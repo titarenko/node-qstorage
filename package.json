@@ -1,0 +1,29 @@
+{
+  "name": "qstorage",
+  "version": "0.1.0",
+  "description": "Partial wrapper around mongodb API which employs promises instead of callbacks.",
+  "main": "index.coffee",
+  "scripts": {
+    "test": "coffee -co js . && istanbul cover node_modules/mocha/bin/_mocha -- -t 1000 --recursive js/tests -R spec -r should && cp README.md package.json js/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/titarenko/node-qstorage.git"
+  },
+  "keywords": [
+    "promise",
+    "q",
+    "mongodb",
+    "storage"
+  ],
+  "author": "Constantin Titarenko",
+  "license": "MIT",
+  "dependencies": {
+    "q": "~0.9.7",
+    "mongodb": "~1.3.23"
+  },
+  "devDependencies": {
+    "should": "~1.2.2",
+    "mocha": "~1.12.1"
+  }
+}
