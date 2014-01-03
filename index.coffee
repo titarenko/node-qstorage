@@ -1,5 +1,5 @@
 Q = require 'q'
-connect = require("connection").connect
+connect = require("./connection").connect
 
 module.exports = 
 
@@ -18,7 +18,7 @@ module.exports =
 		connect().then (db) ->
 			deferred = Q.defer()
 			collection = db.collection(where)
-			cursor = collection.find(query)
+			cursor = collection.find(query or {})
 			cursor.sort(options.sort) if options?.sort
 			cursor.skip(options.skip) if options?.skip
 			cursor.limit(options.limit) if options?.limit
@@ -35,6 +35,17 @@ module.exports =
 			collection = db.collection(where)
 			options = multi: true, safe: true
 			collection.update what, how, options, (error) ->
+				if error
+					deferred.reject(error)
+				else
+					deferred.resolve()
+			deferred.promise
+
+	drop: (what) ->
+		connect().then (db) ->
+			deferred = Q.defer()
+			collection = db.collection(what)
+			collection.drop (error) ->
 				if error
 					deferred.reject(error)
 				else

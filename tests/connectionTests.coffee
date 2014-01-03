@@ -6,7 +6,7 @@ describe "connection", ->
 
 	describe "::connect()", ->
 
-		beforeEach ->
+		afterEach ->
 			utils.restoreMongoConnect()
 			connection.disconnect()
 
