@@ -1,5 +1,4 @@
-qstorage
-========
+# qstorage
 
 Partial wrapper around [MongoDB API](https://github.com/mongodb/node-mongodb-native) which employs [promises](https://github.com/kriskowal/q) instead of callbacks.
 
@@ -7,10 +6,10 @@ Partial wrapper around [MongoDB API](https://github.com/mongodb/node-mongodb-nat
 
 [![NPM](https://nodei.co/npm/qstorage.png?downloads=true&stars=true)](https://nodei.co/npm/qstorage/)
 
-Usage
-=====
+## Usage
 
 By default `qstorage` lazily connects to MongoDB instance using connection string provided via `CONNECTION_STRING` environment variable.
+
 *If you need to provide connection string via API call, these details will be discussed below.*
 
 So, everything you need, is start directly from inserting, querying and updating your documents!
@@ -29,8 +28,19 @@ storage
 
 As you may noticed, `qstorage` API follows promise pattern and for this purpose it uses [Q](https://github.com/kriskowal/q) library. 
 
-License
-=======
+### Connection
+
+If you want to explicitly connect to DB other than specified via environment variable, you can use `connection.connect` method.
+
+```coffee
+connection = require "qstorage/connection"
+
+connection
+	.connect("mongodb://myinstance")
+	.catch((error) -> console.log error)
+	.done(-> console.log "Hooray!")
+```
+
+## License
 
 MIT
-
