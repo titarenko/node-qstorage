@@ -4,7 +4,7 @@
   "description": "Partial wrapper around mongodb API which employs promises instead of callbacks.",
   "main": "index.coffee",
   "scripts": {
-    "test": "coffee -co js . && istanbul cover node_modules/mocha/bin/_mocha -- -t 1000 --recursive js/tests -R spec -r should && cp README.md package.json js/"
+    "test": "coffee -co js . && istanbul cover node_modules/mocha/bin/_mocha -- -t 1000 --recursive js/tests -R spec -r should && cp README.md package.json js/ && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "should": "~1.2.2",
-    "mocha": "~1.12.1"
+    "mocha": "~1.12.1",
+    "coveralls": "~2.6.1"
   }
 }
